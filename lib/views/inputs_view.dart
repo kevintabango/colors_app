@@ -8,6 +8,7 @@ class InputsView extends StatefulWidget {
 }
 
 class _InputsViewState extends State<InputsView> {
+  bool? pilotoAutomatico;
   bool? checkboxValue = false;
   bool switchValue = false;
   double sliderValue = 0;
@@ -19,91 +20,148 @@ class _InputsViewState extends State<InputsView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Inputs View'),
+        title: Row(
+          children: [
+            Image.network(
+              'https://www.shutterstock.com/image-vector/airplane-passenger-travel-silhouette-icon-260nw-2473256763.jpg',
+              height: 40,
+            ),
+            const SizedBox(width: 10),
+            const Text("Registro de Avión"),
+          ],
+        ),
       ),
       body: Column(
-        // text field
         children: [
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: textCtrl,
-              obscureText: true,
+              obscureText: false,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                label: Text('Name'),
-                border: OutlineInputBorder(),
+                label: const Text('Modelo de Avión'),
+                border: const OutlineInputBorder(),
                 focusColor: Theme.of(context).colorScheme.inversePrimary,
-                helperText: "It's necesary your full name",
-                hintText: 'John Doe',
+                helperText: "Es necesario este campo",
+                hintText: 'Ej. Airbus A320',
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              obscureText: false,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                label: const Text('Matrícula'),
+                border: const OutlineInputBorder(),
+                focusColor: Theme.of(context).colorScheme.inversePrimary,
+                helperText: "Es necesario este campo",
+                hintText: 'Ej. N3794N',
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              obscureText: false,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                label: const Text('Año de Fabricación'),
+                border: const OutlineInputBorder(),
+                focusColor: Theme.of(context).colorScheme.inversePrimary,
+                helperText: "Es necesario este campo",
+                hintText: 'Ej. 2009',
+              ),
+            ),
+          ),
+                SizedBox(height: 8.0),
+          DropdownButtonFormField<String>(
+            decoration: const InputDecoration(
+              labelText: "Seleccione Tipo de avión",
+              border: OutlineInputBorder(),
+            ),
+            items: const [
+              DropdownMenuItem(value: '1', child: Text('De carga')),
+              DropdownMenuItem(value: '2', child: Text('Privado')),
+              DropdownMenuItem(value: '3', child: Text('Comercial')),
+            ],
+            onChanged: (value) {
+              print(value);
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Piloto automático:", style: TextStyle(fontSize: 16)),
 
-          // checkbox
-          Checkbox(
-            value: checkboxValue,
-            onChanged: (value) {
-              setState(() {
-                checkboxValue = value;
-              });
-            },
+                Row(
+                  children: [
+                    Text("Sí"),
+                    Checkbox(
+                      value: pilotoAutomatico == true,
+                      onChanged: (value) {
+                        setState(() => pilotoAutomatico = true);
+                      },
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    Text("No"),
+                    Checkbox(
+                      value: pilotoAutomatico == false,
+                      onChanged: (value) {
+                        setState(() => pilotoAutomatico = false);
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-          CheckboxListTile(
-            value: checkboxValue,
-            title: Text('Check me'),
-            onChanged: (value) {
-              setState(() {
-                checkboxValue = value;
-              });
-            },
-          ),
-          Switch(
-            value: switchValue,
-            onChanged: (value) {
-              setState(() {
-                switchValue = !switchValue;
-              });
-            },
-          ),
-          SwitchListTile(
-            value: switchValue,
-            title: Text('Switch me'),
-            onChanged: (value) {
-              setState(() {
-                switchValue = !switchValue;
-              });
-            },
-          ),
-          Slider(
+           Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Horas de Vuelo:", style: TextStyle(fontSize: 16)),
+  
+            Slider(
             value: sliderValue,
             min: 0,
-            max: 0.5,
-            label: "Slide me",
-
+            max: 50,
+            label: sliderValue.round().toString(),
+            onChanged: (value) {
+          setState(() {
+            sliderValue = value; // actualizar el estado
+          });
+        },
+      ),
+      Text("Valor seleccionado: ${sliderValue.toStringAsFixed(1)}"),
+    ],
+            ),
+                
+          ),
+         SwitchListTile(
+            value: switchValue,
+            title: Text('Primer vuelo:'),
             onChanged: (value) {
               setState(() {
-                sliderValue = value;
-                print(value);
+                switchValue = !switchValue;
               });
             },
           ),
           SizedBox(height: 50),
-          ElevatedButton(onPressed: () {}, child: Text('Elevated Button')),
-          FilledButton(onPressed: () {}, child: Text("Filled Button")),
-          TextButton(onPressed: () {}, child: Text('Text Button')),
-          OutlinedButton(
-            onPressed: () {
-              print(
-                "${textCtrl.text} $checkboxValue $sliderValue $switchValue",
-              );
-            },
-            child: Text('Outline Button'),
-          ),
-          CloseButton(),
-          BackButton(),
+        ElevatedButton(onPressed: () {}, child: Text('Registrar Avión')),
+        
         ],
+      
       ),
+        
     );
   }
 }
