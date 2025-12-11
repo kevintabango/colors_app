@@ -41,7 +41,7 @@ class _InputsViewState extends State<InputsView> {
           ),
 
           // checkbox
-          Checkbox(
+          Checkbox.adaptive(
             value: checkboxValue,
             onChanged: (value) {
               setState(() {
@@ -49,7 +49,7 @@ class _InputsViewState extends State<InputsView> {
               });
             },
           ),
-          CheckboxListTile(
+          CheckboxListTile.adaptive(
             value: checkboxValue,
             title: Text('Check me'),
             onChanged: (value) {
@@ -58,7 +58,7 @@ class _InputsViewState extends State<InputsView> {
               });
             },
           ),
-          Switch(
+          Switch.adaptive(
             value: switchValue,
             onChanged: (value) {
               setState(() {
@@ -66,7 +66,7 @@ class _InputsViewState extends State<InputsView> {
               });
             },
           ),
-          SwitchListTile(
+          SwitchListTile.adaptive(
             value: switchValue,
             title: Text('Switch me'),
             onChanged: (value) {
@@ -75,7 +75,7 @@ class _InputsViewState extends State<InputsView> {
               });
             },
           ),
-          Slider(
+          Slider.adaptive(
             value: sliderValue,
             min: 0,
             max: 0.5,

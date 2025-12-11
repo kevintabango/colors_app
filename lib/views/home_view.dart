@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:switch_theme_app/services/theme_service.dart';
 import 'package:switch_theme_app/views/colors_view.dart';
+import 'package:switch_theme_app/views/http_view.dart';
 import 'package:switch_theme_app/views/inputs_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -21,6 +23,7 @@ class HomeView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('Switch Theme'),
+            Lottie.asset('assets/cat.json'),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(
@@ -36,6 +39,17 @@ class HomeView extends StatelessWidget {
                 ).push(MaterialPageRoute(builder: (context) => InputsView()));
               },
               child: Text('Go to inputs view'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (context) => HttpView()));
+              },
+              child: Text('Go to http'),
+            ),
+            Lottie.network(
+              'https://lottie.host/f0ef8aa9-d57a-460d-94b5-fb86c7b5db9c/f1gQGUkVMz.json',
             ),
           ],
         ),
