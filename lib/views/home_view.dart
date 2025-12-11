@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:switch_theme_app/services/theme_service.dart';
 import 'package:switch_theme_app/views/colors_view.dart';
+import 'package:switch_theme_app/views/http.view.dart';
 import 'package:switch_theme_app/views/inputs_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -11,35 +13,70 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var themeStatus = themeMode.value == 'light';
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
       ),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('Switch Theme'),
+
+            const Text(
+              'Switch Theme',
+              style: TextStyle(fontSize: 22),
+            ),
+
+            // Animación Lottie local
+            Lottie.asset(
+              'assets/Loading Lottie animation.json',
+              height: 200,
+            ),
+
+            const SizedBox(height: 20),
+
             ElevatedButton(
               onPressed: () {
-                Navigator.of(
-                  context,
-                ).push(MaterialPageRoute(builder: (context) => ColorsView()));
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ColorsView()),
+                );
               },
-              child: Text('Go to colors view'),
+              child: const Text('Go to colors view'),
+            ),
+
+            const SizedBox(height: 10),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => InputsView()),
+                );
+              },
+              child: const Text('Registro de Avión'),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(
-                  context,
-                ).push(MaterialPageRoute(builder: (context) => InputsView()));
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => MyWidget()),
+                );
               },
-              child: Text('Go to inputs view'),
+              child: const Text('hhtp'),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Animación Lottie desde internet
+            Lottie.network(
+              "https://lottie.host/aac96b04-0106-4659-aa32-8d90f34518cb/STTwGBKb5s.json",
+              height: 150,
             ),
           ],
         ),
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (themeStatus) {
@@ -51,8 +88,7 @@ class HomeView extends StatelessWidget {
         tooltip: 'Switch theme',
         child: Icon(
           themeStatus ? Icons.sunny : Icons.mode_night_outlined,
-        ), //Icons.sunny
-        //child: const Icon(Icons.mode_night_outlined), //Icons.sunny
+        ),
       ),
     );
   }
