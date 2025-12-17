@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+//import 'package:lottie/lottie.dart';
 import 'package:switch_theme_app/services/theme_service.dart';
 import 'package:switch_theme_app/views/colors_view.dart';
 import 'package:switch_theme_app/views/http.view.dart';
@@ -31,10 +31,10 @@ class HomeView extends StatelessWidget {
             ),
 
             // Animación Lottie local
-            Lottie.asset(
+            /*Lottie.asset(
               'assets/Loading Lottie animation.json',
               height: 200,
-            ),
+            ),*/
 
             const SizedBox(height: 20),
 
@@ -57,22 +57,23 @@ class HomeView extends StatelessWidget {
               },
               child: const Text('Registro de Avión'),
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => MyWidget()),
+                  MaterialPageRoute(builder: (context) => HttpView()),
                 );
               },
-              child: const Text('hhtp'),
+              child: const Text('Vista HTTP - The Simpsons API'),
             ),
 
             const SizedBox(height: 20),
 
             // Animación Lottie desde internet
-            Lottie.network(
+           /* Lottie.network(
               "https://lottie.host/aac96b04-0106-4659-aa32-8d90f34518cb/STTwGBKb5s.json",
               height: 150,
-            ),
+            ),*/
           ],
         ),
       ),
