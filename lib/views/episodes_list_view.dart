@@ -36,14 +36,37 @@ class _EpisodesListViewState extends State<EpisodesListView> {
 
                 if (snapshot.hasData) {
                   return Column(
-                    children: snapshot.data!.results
-                        .map(
-                          (ep) => ListTile(
-                            title: Text(ep.name),
-                            subtitle: Text(ep.synopsis),
-                          ),
-                        )
-                        .toList(),
+                    children: [
+                      ...snapshot.data!.results
+                          .map(
+                            (ep) => ListTile(
+                              title: Text(ep.name),
+                              subtitle: Text(ep.synopsis),
+                            ),
+                          )
+                          .toList(),
+
+                      Container(
+                        width: double.infinity,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                //
+                              },
+                              child: Text('Anterior'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                //
+                              },
+                              child: Text('Siguiente'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   );
                 }
 
