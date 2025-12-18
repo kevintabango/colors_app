@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -48,8 +48,18 @@ class HomeView extends StatelessWidget {
               },
               child: Text('Go to http'),
             ),
-            Lottie.network(
-              'https://lottie.host/f0ef8aa9-d57a-460d-94b5-fb86c7b5db9c/f1gQGUkVMz.json',
+            Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                  ),
+                ],
+              ),
+              child: Lottie.network(
+                'https://lottie.host/f0ef8aa9-d57a-460d-94b5-fb86c7b5db9c/f1gQGUkVMz.json',
+                fit: BoxFit.cover,
+              ),
             ),
           ],
         ),
