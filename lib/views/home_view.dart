@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 //import 'package:lottie/lottie.dart';
 import 'package:switch_theme_app/services/theme_service.dart';
 import 'package:switch_theme_app/views/colors_view.dart';
+import 'package:switch_theme_app/views/episodios_view.dart';
 import 'package:switch_theme_app/views/http.view.dart';
 import 'package:switch_theme_app/views/inputs_view.dart';
 
@@ -68,6 +69,14 @@ class HomeView extends StatelessWidget {
             ),
 
             const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => EpisodiosView()),
+                );
+              },
+              child: const Text('Vista Episodios'),
+            ),
 
             // Animación Lottie desde internet
            /* Lottie.network(
